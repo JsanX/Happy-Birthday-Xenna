@@ -16,7 +16,9 @@
             font-family: 'Inter', sans-serif;
             height: 100vh;
             touch-action: manipulation;
-             background: linear-gradient(135deg, #f340e4, #f3e8ff);
+            background: linear-gradient(135deg, #f340e4, #f3e8ff);
+			overflow-x: hidden;
+			overflow-y: auto; /* allow vertical scrolling */
         }
 
         #app {
@@ -40,10 +42,10 @@
         }
 
         .step {
-            position: absolute;
+            position: relative;
             width: 100%;
             max-width: 800px;
-            padding: 40px;
+            padding: 20px;
             background: rgba(255, 255, 255, 0.509);
             backdrop-filter: blur(10px);
             border-radius: 20px;
@@ -53,6 +55,11 @@
             transform: translateY(20px);
             transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
             pointer-events: none;
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start; /* align top for scrolling */
+			max-height: 90vh; /* fit most screens */
+			overflow-y: auto;
         }
         /* .step {
             text-align: left;
@@ -117,6 +124,16 @@
             background: #ec4899;
             border-radius: 3px;
         }
+		
+		@media (max-width: 600px) {
+			.step {
+				padding: 15px;
+			}
+			.step-scrollable {
+				max-height: 80vh; /* allows scrolling within step */
+			}
+		}
+
 
         @keyframes auraGlow {
             0% {
@@ -138,6 +155,7 @@
             font-weight: 600;
             cursor: pointer;
             margin-top: 20px;
+			margin-bottom: 20px; /* add bottom spacing */
             box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
             transition: all 0.3s ease;
         }
